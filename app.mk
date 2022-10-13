@@ -15,5 +15,5 @@
 #
 
 
-PRODUCT_PACKAGES += \
-	SmartTube
+PRODUCT_PACKAGES += SmartTube
+PRODUCT_PACKAGES += mylogger

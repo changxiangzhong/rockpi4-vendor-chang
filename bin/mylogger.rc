@@ -1,0 +1,10 @@
+on property:vendor.chang.sample_logger_daemon.enabled=1 
+    start mylogger
+
+on property:vendor.chang.sample_logger_daemon.enabled=0
+    stop mylogger
+
+service mylogger /system/xbin/mylogger
+    user root
+    group root
+    seclabel u:r:su:s0
