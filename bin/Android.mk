@@ -9,9 +9,11 @@ LOCAL_CFLAGS:=-O2 -g
 
 LOCAL_MODULE_TAGS := eng
 
-LOCAL_MODULE_PATH := $(TARGET_OUT_OPTIONAL_EXECUTABLES)
+LOCAL_MODULE_PATH := $(TARGET_OUT_VENDOR_EXECUTABLES)
 
-LOCAL_MODULE:=mylogger
+LOCAL_MODULE:= mylogger
+
+LOCAL_INIT_RC := mylogger.rc
 
 # gold in binutils 2.22 will warn about the usage of mktemp
 LOCAL_LDFLAGS += -Wl,--no-fatal-warnings

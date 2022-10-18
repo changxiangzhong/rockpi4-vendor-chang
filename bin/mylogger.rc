@@ -4,7 +4,7 @@ on property:vendor.chang.sample_logger_daemon.enabled=1
 on property:vendor.chang.sample_logger_daemon.enabled=0
     stop mylogger
 
-service mylogger /system/xbin/mylogger
+service mylogger /vendor/bin/mylogger
     user root
     group root
     seclabel u:r:su:s0

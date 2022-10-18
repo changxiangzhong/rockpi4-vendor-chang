@@ -34,4 +34,8 @@ int main() {
 /**
  * Use the following script to send a packet
  *  echo -n "My name is Chang" >/dev/udp/10.42.0.199/2000
+ *
+ * Further reading
+ *  https://web.archive.org/web/20100513023326/http://www.androidenea.com/2009/08/init-process-and-initrc.html
+ *  https://stackoverflow.com/questions/58703959/what-is-a-recent-way-of-running-a-daemon-service-in-android
  **/
