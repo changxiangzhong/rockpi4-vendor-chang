@@ -5,3 +5,7 @@ Fixing the following
 10-18 21:25:42.014  3609  3609 I mylogger: type=1400 audit(0.0:174): avc: denied { siginh } for scontext=u:r:init:s0 tcontext=u:r:su:s0 tclass=process permissive=1
 10-18 21:25:42.014  3609  3609 I mylogger: type=1400 audit(0.0:175): avc: denied { noatsecure } for scontext=u:r:init:s0 tcontext=u:r:su:s0 tclass=process permissive=1
 
+
+
+Further reading
+https://android.stackexchange.com/questions/214839/how-to-run-an-android-init-service-with-superuser-selinux-context

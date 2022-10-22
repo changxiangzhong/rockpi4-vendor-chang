@@ -9,7 +9,9 @@ LOCAL_CFLAGS:=-O2 -g
 
 LOCAL_MODULE_TAGS := eng
 
-LOCAL_MODULE_PATH := $(TARGET_OUT_VENDOR_EXECUTABLES)
+# Avoiding putting it to /vendor/bin folder
+# That could leads to SeLinux issue
+# LOCAL_MODULE_PATH := $(TARGET_OUT_VENDOR_EXECUTABLES)
 
 LOCAL_MODULE:= mylogger
 
