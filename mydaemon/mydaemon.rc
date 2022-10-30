@@ -4,3 +4,39 @@ service mydaemon /system/bin/mydaemon
     group root
     socket mydaemon dgram 0660 root system
     seclabel u:r:mydaemon:s0
+
+#Use the audit2allow tool to audit the sepolicy
+#chang@ryzen:~/bulk2/rockpi4-atv9-chang$ audit2allow -i ~/Desktop/logcat.log -p ~/Desktop/sys_fs_selinux_policy 
+#
+#
+##============= hal_sensors_default ==============
+#allow hal_sensors_default default_prop:file { getattr open read };
+#
+##============= init ==============
+#allow init default_android_service:service_manager add;
+#allow init servicemanager:binder { call transfer };
+#allow init sysfs:file read;
+#allow init sysfs_dev:file read;
+#allow init system_file:file execute_no_trans;
+#
+##============= mydaemon ==============
+#allow mydaemon self:udp_socket read;
+#
+##============= priv_app ==============
+#allow priv_app bluetooth_a2dp_offload_prop:file { getattr open };
+#allow priv_app bluetooth_prop:file open;
+#allow priv_app cts_gts_prop:file { getattr open };
+#
+##============= servicemanager ==============
+#allow servicemanager init:dir search;
+#allow servicemanager init:file { open read };
+#
+##============= system_server ==============
+#allow system_server sysfs:dir { open read };
+#allow system_server sysfs:file { getattr open read };
+#allow system_server thermal_service:service_manager find;
+#
+##============= vendor_init ==============
+#allow vendor_init bluetooth_data_file:dir setattr;
+#allow vendor_init kernel:system module_request;
+#allow vendor_init system_data_file:dir setattr;
