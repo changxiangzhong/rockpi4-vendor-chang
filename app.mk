@@ -17,3 +17,4 @@
 
 PRODUCT_PACKAGES += SmartTube
 PRODUCT_PACKAGES += mylogger
+PRODUCT_PACKAGES += mydaemon

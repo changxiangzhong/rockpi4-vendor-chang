@@ -1,0 +1,23 @@
+
+
+Android socket model seems to be very strange compared to "normal" sockets.
+
+First, socket has to be initialized via init.rc, given certain permissions.
+
+Next, server application opens it with:
+
+x_con = android_get_control_socket("test");
+
+Next, listen() and fnctl() calls are required:
+
+listen(x_con, 1);
+fcntl(x_con, F_SETFD, FD_CLOEXEC);
+
+After that, a LocalSocket connection from Java can access socket, and socket can accept clients.
+
+Setting non-blocking mode later is allowed too:
+
+fnctl(x_con, F_SETFL, O_NONBLOCK);
+
+Other combinations are unnecessary (and there are some guides like Working with the Radio Layer Interface (RIL) in Android - will not link to that low-grade manual - are stating that both socket_local_server and android_get_control_socket are required, which is clearly untrue).
+
