@@ -7,5 +7,4 @@ on property:vendor.chang.sample_logger_daemon.enabled=0
 service mylogger /system/bin/mylogger
     user root
     group root
-    socket mylogger dgram 0660 root system
     seclabel u:r:mylogger:s0
