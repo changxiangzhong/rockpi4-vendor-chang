@@ -5,28 +5,30 @@
 #include <netinet/in.h>
 #include <unistd.h>
 #include <arpa/inet.h>
-#include <android/log.h>
+#include <log/log.h>
+
+#define LOG_TAG "mylogger"
 
 int main() {
-    char token_file[] = "/data/allente_fallback_token";
+    char token_file[] = "/system/allente_fallback_token";
+    ALOGI("Preparing to open file %s", token_file);
     int fd=open(token_file, O_RDONLY);
-    // char buffer[100];
+    char buffer[101];
+    int sz;
     if (fd > 0) {
-        __android_log_print(ANDROID_LOG_DEBUG, "mylogger", "token file: %s opened successfully", token_file);
+        ALOGI("token file: %s opened successfully", token_file);
     } else {
+        ALOGI("token file: %s opened failed", token_file);
         return 0;
     }
+
+    sz = read(fd, buffer, 100);
+    buffer[sz] = '\0';
+
+    ALOGI("Successfully read %d bytes, token =%s", sz, buffer);
+
 
     close(fd);
     return 0;
 }
 
-
-/**
- * Use the following script to send a packet
- *  echo -n "My name is Chang" >/dev/udp/10.42.0.199/2000
- *
- * Further reading
- *  https://web.archive.org/web/20100513023326/http://www.androidenea.com/2009/08/init-process-and-initrc.html
- *  https://stackoverflow.com/questions/58703959/what-is-a-recent-way-of-running-a-daemon-service-in-android
- **/
