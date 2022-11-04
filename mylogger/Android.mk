@@ -4,6 +4,8 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES:=\
 	mylogger.c
 
+LOCAL_LDLIBS := -llog
+
 LOCAL_CFLAGS:=-O2 -g
 #LOCAL_CFLAGS+=-DLINUX
 

@@ -5,27 +5,18 @@
 #include <netinet/in.h>
 #include <unistd.h>
 #include <arpa/inet.h>
- 
+#include <android/log.h>
+
 int main() {
-    int fd=open("/data/data1",O_RDWR|O_CREAT,0660);
-    char buffer[100];
-    struct sockaddr_in addr = {0};
-    size_t addrlen, n;
-    int sockfd = socket(AF_INET, SOCK_DGRAM, 0);
-    
-    addr.sin_family = AF_INET;
-    addr.sin_port = htons(2000);
-    addr.sin_addr.s_addr = INADDR_ANY;
-    bind(sockfd, (struct sockaddr*)&addr, sizeof(addr));
-    
-    addrlen = sizeof(addr);
-    while(1)
-    {
-        n = recvfrom(sockfd, (void*)buffer, 100, 0,
-		(struct sockaddr*)&addr, (unsigned int *) &addrlen);
-        buffer[n] = '\n';
-        write(fd,buffer,n+1);
+    char token_file[] = "/data/allente_fallback_token";
+    int fd=open(token_file, O_RDONLY);
+    // char buffer[100];
+    if (fd > 0) {
+        __android_log_print(ANDROID_LOG_DEBUG, "mylogger", "token file: %s opened successfully", token_file);
+    } else {
+        return 0;
     }
+
     close(fd);
     return 0;
 }
