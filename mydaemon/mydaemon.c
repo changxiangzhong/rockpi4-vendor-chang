@@ -7,7 +7,7 @@
 #include <arpa/inet.h>
  
 int main() {
-    int fd=open("/data/data1",O_RDWR|O_CREAT,0660);
+    int fd=open("/data/mydaemon_output",O_RDWR|O_CREAT,0660);
     char buffer[100];
     struct sockaddr_in addr = {0};
     size_t addrlen, n;
