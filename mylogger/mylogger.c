@@ -5,37 +5,30 @@
 #include <netinet/in.h>
 #include <unistd.h>
 #include <arpa/inet.h>
- 
+#include <log/log.h>
+
+#define LOG_TAG "mylogger"
+
 int main() {
-    int fd=open("/data/data1",O_RDWR|O_CREAT,0660);
-    char buffer[100];
-    struct sockaddr_in addr = {0};
-    size_t addrlen, n;
-    int sockfd = socket(AF_INET, SOCK_DGRAM, 0);
-    
-    addr.sin_family = AF_INET;
-    addr.sin_port = htons(2000);
-    addr.sin_addr.s_addr = INADDR_ANY;
-    bind(sockfd, (struct sockaddr*)&addr, sizeof(addr));
-    
-    addrlen = sizeof(addr);
-    while(1)
-    {
-        n = recvfrom(sockfd, (void*)buffer, 100, 0,
-		(struct sockaddr*)&addr, (unsigned int *) &addrlen);
-        buffer[n] = '\n';
-        write(fd,buffer,n+1);
+    char token_file[] = "/system/allente_fallback_token";
+    ALOGI("Preparing to open file %s", token_file);
+    int fd=open(token_file, O_RDONLY);
+    char buffer[101];
+    int sz;
+    if (fd > 0) {
+        ALOGI("token file: %s opened successfully", token_file);
+    } else {
+        ALOGI("token file: %s opened failed", token_file);
+        return 0;
     }
+
+    sz = read(fd, buffer, 100);
+    buffer[sz] = '\0';
+
+    ALOGI("Successfully read %d bytes, token =%s", sz, buffer);
+
+
     close(fd);
     return 0;
 }
 
-
-/**
- * Use the following script to send a packet
- *  echo -n "My name is Chang" >/dev/udp/10.42.0.199/2000
- *
- * Further reading
- *  https://web.archive.org/web/20100513023326/http://www.androidenea.com/2009/08/init-process-and-initrc.html
- *  https://stackoverflow.com/questions/58703959/what-is-a-recent-way-of-running-a-daemon-service-in-android
- **/
