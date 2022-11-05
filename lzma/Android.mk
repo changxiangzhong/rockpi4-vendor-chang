@@ -1,18 +1,23 @@
+###############################################
+# The whole project is copied from Lzma projec
+# This make file is writte by Chang
+# 
 LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES:=\
-	7zFile.c \
-	7zStream.c \
-	Alloc.c \
-	CpuArch.c \
-	LzFind.c \
-	LzFindMt.c \
-	LzFindOpt.c \
-	LzmaDec.c \
-	LzmaEnc.c \
-	Util/Lzma/LzmaUtil.c \
-	Threads.c
+	   Asm/arm64/LzmaDecOpt.S \
+       C/7zFile.c \
+       C/7zStream.c \
+       C/Alloc.c \
+       C/CpuArch.c \
+       C/LzFind.c \
+       C/LzFindMt.c \
+       C/LzFindOpt.c \
+       C/LzmaDec.c \
+       C/LzmaEnc.c \
+       C/Util/Lzma/LzmaUtil.c \
+       C/Threads.c 
 
 LOCAL_LDLIBS := -llog
 
