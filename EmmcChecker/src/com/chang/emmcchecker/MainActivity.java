@@ -22,6 +22,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
     private EditText valueText = null;
     private Button readButton = null;
+    private JniCall jniCall = new JniCall();
 
     /** Called when the activity is first created. */
     @Override
@@ -46,6 +47,10 @@ public class MainActivity extends Activity implements OnClickListener {
 
         readButton.setOnClickListener(this);
         Log.i(LOG_TAG, "Hello Activity Created");
+
+        int slcLife = jniCall.getSlcLife();
+        int mlcLife = jniCall.getMlcLife();
+        Log.d(LOG_TAG, "jniCall.getSlcLife() = " + slcLife + "jniCall.getMlcLife() = " + mlcLife);
     }
 
     @Override
